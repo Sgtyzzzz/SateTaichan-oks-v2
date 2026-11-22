@@ -9,13 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-   public function up(): void
+ public function up(): void
 {
     Schema::create('tables', function (Blueprint $table) {
         $table->id();
-        $table->string('table_number')->unique();
-        $table->integer('capacity');
-        $table->enum('status', ['available', 'booked', 'occupied'])->default('available');
+        $table->string('table_number'); // Meja 01, Meja 02, dst
+        $table->integer('capacity')->default(4);
+        $table->enum('status', ['available', 'occupied', 'reserved'])->default('available');
         $table->timestamps();
     });
 }

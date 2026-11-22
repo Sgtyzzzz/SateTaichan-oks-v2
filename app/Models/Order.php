@@ -3,23 +3,38 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-/**
- * @property Table|null $table
- * @property User $user
- * @property User|null $kasir
- */
 class Order extends Model
 {
     protected $fillable = [
-        'order_code', 'user_id', 'kasir_id', 'table_id', 'order_type',
-        'total_price', 'status', 'payment_status', 'payment_method', 'snap_token'
+        'order_code',
+        'user_id',
+        'customer_name',
+        'table_id',
+        'order_type',
+        'spicy_level',
+        'notes',
+        'subtotal',
+        'service_fee',
+        'total_price',
+        'payment_method',
+        'payment_status',
+        'order_status',
+        'snap_token',
     ];
 
-    public function user(): BelongsTo { return $this->belongsTo(User::class); }
-    public function kasir(): BelongsTo { return $this->belongsTo(User::class, 'kasir_id'); }
-    public function table(): BelongsTo { return $this->belongsTo(Table::class); }
-    public function items(): HasMany { return $this->hasMany(OrderItem::class); }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function table()
+    {
+        return $this->belongsTo(Table::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

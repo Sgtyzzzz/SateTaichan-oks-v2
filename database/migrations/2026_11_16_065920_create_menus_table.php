@@ -9,15 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-   public function up(): void
+public function up(): void
 {
     Schema::create('menus', function (Blueprint $table) {
         $table->id();
         $table->string('name');
+        $table->string('category'); // Sate Favorit, Paket Hemat, Pelengkap, Minuman
+        $table->string('badge')->nullable(); // Paling Laris, Favorit Baru, dll
         $table->text('description')->nullable();
-        $table->decimal('price', 12, 2);
-        $table->enum('category', ['sate', 'pelengkap', 'minuman']);
-        $table->integer('stock')->default(0);
+        $table->integer('price');
+        $table->integer('stock')->default(50);
         $table->string('image')->nullable();
         $table->boolean('is_available')->default(true);
         $table->timestamps();

@@ -10,7 +10,15 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
-    protected $fillable = ['name', 'email', 'password', 'role', 'phone'];
+  protected $fillable = [
+    'name',
+    'email',
+    'google_id',
+    'password',
+    'role',
+    'phone',
+    'email_verified_at',
+];
     protected $hidden = ['password', 'remember_token'];
 
     public function orders()
